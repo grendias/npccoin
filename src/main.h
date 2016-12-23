@@ -118,7 +118,7 @@ bool LoadExternalBlockFile(FILE* fileIn);
 bool CheckProofOfWork(uint256 hash, unsigned int nBits);
 unsigned int GetNextTargetRequired(const CBlockIndex* pindexLast, bool fProofOfStake);
 int64_t GetProofOfWorkReward(int64_t nFees);
-int64_t GetProofOfStakeReward(int64_t nCoinAge, int64_t nFees, int nHeight);
+int64_t GetProofOfStakeReward(int64_t nCoinAge, int64_t nFees);
 unsigned int ComputeMinWork(unsigned int nBase, int64_t nTime);
 unsigned int ComputeMinStake(unsigned int nBase, int64_t nTime, unsigned int nBlockTime);
 int GetNumBlocksOfPeers();
@@ -556,7 +556,6 @@ public:
     unsigned int GetLegacySigOpCount() const;
 
     /** Count ECDSA signature operations in pay-to-script-hash inputs.
-
         @param[in] mapInputs	Map of previous transactions that have outputs we're spending
         @return maximum number of sigops required to validate this transaction's inputs
         @see CTransaction::FetchInputs
@@ -581,7 +580,6 @@ public:
     /** Amount of bitcoins coming in to this transaction
         Note that lightweight clients may not know anything besides the hash of previous transactions,
         so may not be able to calculate this.
-
         @param[in] mapInputs	Map of previous transactions that have outputs we're spending
         @return	Sum of value of all inputs (scriptSigs)
         @see CTransaction::FetchInputs
@@ -668,7 +666,6 @@ public:
     bool DisconnectInputs(CTxDB& txdb);
 
     /** Fetch from memory and/or disk. inputsRet keys are transaction hashes.
-
      @param[in] txdb	Transaction database
      @param[in] mapTestPool	List of pending changes to the transaction index database
      @param[in] fBlock	True if being called to add a new best-block to the chain
@@ -682,7 +679,6 @@ public:
 
     /** Sanity check previous transactions, then, if all checks succeed,
         mark them as spent by this transaction.
-
         @param[in] inputs	Previous transactions (from FetchInputs)
         @param[out] mapTestPool	Keeps track of inputs that need to be updated on disk
         @param[in] posThisTx	Position of this transaction on disk
